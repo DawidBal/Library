@@ -15,9 +15,9 @@ a {
 }
 
 .books {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  @include flexCenter(column);
+  align-items: stretch;
+  gap: 0.5rem;
 }
 
 .form {
@@ -42,8 +42,23 @@ a {
   }
 
   &__wrapper {
-    transform: scale(0);
+    background: var(--secondaryColor);
+    border: 1px solid var(--secondaryColor);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0.1rem 0 var(--white), 0.15rem 0 var(--secondaryColorShadow),
+      0.2rem 0 var(--white), 0.25rem 0 var(--secondaryColorShadow),
+      0.3rem 0 var(--white), 0.35rem 0 var(--secondaryColorShadow),
+      0.4rem 0 var(--white), 0.45rem 0 var(--secondaryColorShadow),
+      0.5rem 0 var(--white), 0.55rem 0 var(--secondaryColorShadow),
+      0.6rem 0 var(--white), -0.4rem 0 var(--secondaryColorShadow);
+    padding: 1rem;
+    @include flexCenter(column);
     z-index: 11;
+  }
+
+  &__title {
+    font-size: 2rem;
   }
 }
 
@@ -97,20 +112,32 @@ a {
 
   &__container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1rem;
     & div {
       padding: 0.5rem;
       border: 1px solid var(--secondaryColor);
-      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
       background: var(--secondaryColor);
       @include flexCenter(column);
+      box-shadow: 0 0.3rem var(--secondaryColorShadow);
     }
   }
 }
 
-.show {
-  transition: transform 0.2s ease-in-out;
-  transform: scale(1);
+.form--active {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
