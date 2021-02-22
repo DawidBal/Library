@@ -1,15 +1,24 @@
 :root {
   --white: #fff;
   --bgGray: #29292960;
+  --semiBlack: #00000080;
+  --overlayBlack: #00000093;
+  --primaryColor: #070623;
+  --secondaryColor: #f9564f;
 }
 
 body {
-  background-color: #0a1229;
+  background-color: var(--primaryColor);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='charlie-brown' fill='%23ffffff' fill-opacity='0.09'%3E%3Cpath d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   color: var(--white);
   font-family: 'Varela Round', sans-serif;
   position: relative;
   min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: var(--secondaryColor);
 }
 
 .books {
@@ -25,11 +34,8 @@ body {
           align-items: flex-start;
 }
 
-.popupForm {
-  position: absolute;
+.form {
   visibility: hidden;
-  top: 0;
-  left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -39,27 +45,56 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100%;
-  width: 100%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: center;
+          flex-direction: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 11;
 }
 
-.popupForm::before {
+.form::after {
   content: '';
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background-color: #29292960;
-  z-index: -1;
+  background-color: var(--overlayBlack);
+  z-index: 10;
   top: 0;
   left: 0;
 }
 
-.libIcon {
-  width: 4rem;
+.form__wrapper {
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  z-index: 11;
+}
+
+.header {
+  color: var(--secondaryColor);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100vw;
+  background: var(--semiBlack);
+  border-bottom: 1px solid var(--bgGray);
+}
+
+.header__icon {
+  color: var(--white);
+  width: 4.5rem;
+  margin: 1rem;
+}
+
+.header__title {
+  font-size: 2.5rem;
 }
 
 .addBook {
@@ -75,10 +110,63 @@ body {
   transition: -webkit-transform 0.2s ease-in;
   transition: transform 0.2s ease-in;
   transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
+  background: var(--secondaryColor);
+  color: var(--white);
+  border: 1px solid var(--secondaryColor);
 }
 
 .addBook:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
+}
+
+.list {
+  width: 90%;
+  margin: 0 auto;
+  height: 80%;
+}
+
+.list__title {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--secondaryColor);
+}
+
+.list__container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(400px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1rem;
+}
+
+.list__container div {
+  padding: 0.5rem;
+  border: 1px solid var(--secondaryColor);
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: var(--secondaryColor);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.show {
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 /*# sourceMappingURL=style.css.map */
