@@ -6,13 +6,13 @@
  */
 function Book(title, author, pagesNum, isRead = false) {
     this.title = title,
-    this.author = author,
-    this.pagesNum = pagesNum,
-    this.isRead = isRead;
+        this.author = author,
+        this.pagesNum = pagesNum,
+        this.isRead = isRead;
 }
-    Book.prototype.info = function() {
-        return `${this.title} by ${this.author}, ${this.pagesNum} pages, ${this.isRead ? "readed" : "not read yet"}`;
-    }
+Book.prototype.info = function () {
+    return `${this.title} by ${this.author}, ${this.pagesNum} pages, ${this.isRead ? "readed" : "not read yet"}`;
+}
 
 function addBookToLibrary(e) {
     e.preventDefault();
@@ -20,32 +20,69 @@ function addBookToLibrary(e) {
     const author = this.querySelector('#author').value;
     const pagesNum = this.querySelector('#pages').value;
     const isRead = this.querySelector('#readed').checked;
-    
+
+
     const newBook = new Book(title, author, pagesNum, isRead);
     myLibrary.push(newBook);
     populateBooks(myLibrary, bookList);
+    removeForm();
     this.reset();
 }
 
 function populateBooks(library = [], bookList) {
     bookList.innerHTML = library.map((book, index) => {
-    return(
-    `
-    <div class="list__item-${index}" data-index="${index}">
-        <span>${book.title}</span>
-        <span>${book.author}</span>
-        <span>${book.pagesNum}</span>
-        <label for="item-${index}">Readed?</label>
-        <input type="checkbox" id="item-${index}" ${book.isRead ? "checked" : ''}>
+        return (
+            `
+    <div class="list__item--${index} item" data-index="${index}">
+        <div class="list__item--title">
+        <span class="item__title">Title</span>
+        <p>${book.title}</p>
+        </div>
+
+        <div class="list__item--author">
+        <span class="item__author">Author</span>
+        <p>${book.author}</p>
+        </div>
+
+        <div class="list__item--pages">
+        <span class="item__pages">Pages Number</span>
+        <p>${book.pagesNum}</p>
+        </div>
+
+        <div class="list__item--oper">
+        <span class="item__oper">Operations</span>
+        <label for="item--${index}">Readed?</label>
+        <input type="checkbox" id="item--${index}" ${book.isRead ? "checked" : ''}>
+        <button class="item__btn--remove">Remove</button>
+        </div>
+
     </div>
     `);
     }).join('');
 }
 
 function showForm() {
-    const popup = document.querySelector('.form');
     popup.style.visibility = 'visible';
-    popup.querySelector('.form__wrapper').classList.add('show');
+    popup.querySelector('.form__wrapper').classList.add('form--active');
+}
+
+function removeForm(e) {
+    if (!e.target.matches('section')) return;
+    popup.querySelector('.form__wrapper').classList.remove('form--active');
+    popup.style.visibility = 'hidden';
+}
+
+function handleBtns(e) {
+    const grandParent = e.target.parentNode.parentNode;
+    const index = grandParent.dataset.index;
+    if (e.target.matches('.item__btn--remove')) {
+        myLibrary.splice(index, 1);
+        populateBooks(myLibrary, bookList);
+    }
+
+    if (e.target.matches(`#item--${index}`)) {
+        myLibrary[index].isRead = !myLibrary[index].isRead;
+    }
 }
 
 const myLibrary = [{ title: "Andrzje", author: "Doda", pagesNum: "256", isRead: false }, { title: "Andrzje", author: "Doda", pagesNum: "256", isRead: true }, { title: "Andrzje", author: "Doda", pagesNum: "256", isRead: false }];
@@ -57,4 +94,8 @@ bookFrom.addEventListener('submit', addBookToLibrary);
 const btnAddBook = document.querySelector('.addBook');
 btnAddBook.addEventListener('click', showForm);
 
+const popup = document.querySelector('.form');
+popup.addEventListener('click', removeForm);
 populateBooks(myLibrary, bookList);
+
+bookList.addEventListener('click', handleBtns);
