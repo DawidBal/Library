@@ -12,20 +12,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    <header class="">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="libIcon">
+    <header class="header">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="header__icon">
         <path fill-rule="evenodd" d="M10.496 2.132a1 1 0 00-.992 0l-7 4A1 1 0 003 8v7a1 1 0 100 2h14a1 1 0 100-2V8a1 1 0 00.496-1.868l-7-4zM6 9a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1zm3 1a1 1 0 012 0v3a1 1 0 11-2 0v-3zm5-1a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1z" clip-rule="evenodd" />
         </svg>
-        <h1 class="">Lib for books</h1>
+        <a href="#">
+        <h1 class="header__title">Lib for books</h1>
+        </a>
     </header>
     <section class="list">
-        <h2>Lista</h2>
-        <ul class="list__container">
+        <h2 class="list__title">My Books</h2>
+        <div class="list__container">
             
-        </ul>
+        </div>
     </section>
-    <section class="popupForm">
-        <h2>Add new Book!</h2>
+    <section class="form">
+        <div class="form__wrapper">
+        <h2 class="form__title">Add new Book!</h2>
         <form action="#" class="books">
             <label for="title">Title:</label>
             <input type="text" class="books__title" id="title" required>
@@ -37,6 +41,7 @@
             <input type="checkbox" class="books__readed" name="isRead" id="readed">
             <input type="submit" value="Add">
         </form>
+        </div>
     </section>
     <button class="addBook">+</button>
 </body>
