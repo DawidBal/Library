@@ -31,19 +31,24 @@ function populateBooks(library = [], bookList) {
     bookList.innerHTML = library.map((book, index) => {
     return(
     `
-    <li class="list__item-${index}" data-index="${index}">
-        <p>${book.title}</p>
-    </li>
+    <div class="list__item-${index}" data-index="${index}">
+        <span>${book.title}</span>
+        <span>${book.author}</span>
+        <span>${book.pagesNum}</span>
+        <label for="item-${index}">Readed?</label>
+        <input type="checkbox" id="item-${index}" ${book.isRead ? "checked" : ''}>
+    </div>
     `);
     }).join('');
 }
 
 function showForm() {
-    const popup = document.querySelector('.popupForm');
+    const popup = document.querySelector('.form');
     popup.style.visibility = 'visible';
+    popup.querySelector('.form__wrapper').classList.add('show');
 }
 
-const myLibrary = [];
+const myLibrary = [{ title: "Andrzje", author: "Doda", pagesNum: "256", isRead: false }, { title: "Andrzje", author: "Doda", pagesNum: "256", isRead: true }, { title: "Andrzje", author: "Doda", pagesNum: "256", isRead: false }];
 const bookList = document.querySelector('.list__container');
 
 const bookFrom = document.querySelector('.books');
@@ -52,3 +57,4 @@ bookFrom.addEventListener('submit', addBookToLibrary);
 const btnAddBook = document.querySelector('.addBook');
 btnAddBook.addEventListener('click', showForm);
 
+populateBooks(myLibrary, bookList);
