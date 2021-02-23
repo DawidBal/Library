@@ -10,6 +10,7 @@ function Book(title, author, pagesNum, isRead = false) {
         this.pagesNum = pagesNum,
         this.isRead = isRead;
 }
+
 Book.prototype.info = function () {
     return `${this.title} by ${this.author}, ${this.pagesNum} pages, ${this.isRead ? "readed" : "not read yet"}`;
 }
@@ -84,19 +85,20 @@ function removeFormClick(e) {
 }
 
 function handleBtns(e) {
-    const grandParent = e.target.parentNode.parentNode;
+    const grandParent = e.target.offsetParent;
     const index = grandParent.dataset.index;
     if (e.target.matches('.item__btn--remove')) {
         myLibrary.splice(index, 1);
         populateBooks(myLibrary, bookList);
     }
-
-    if (e.target.matches(`#item--${index}`)) {
+    if (e.target.matches(`.btn--checked`) || e.target.matches(`.btn--unchecked`)) {
         myLibrary[index].isRead = !myLibrary[index].isRead;
+        e.target.classList.toggle('btn--checked');
+        e.target.classList.toggle('btn--unchecked');
     }
 }
 
-const myLibrary = [{ title: "Andrzje", author: "Doda", pagesNum: "256", isRead: false }, { title: "Andrzje", author: "Doda", pagesNum: "256", isRead: true }, { title: "Andrzje", author: "Doda", pagesNum: "256", isRead: false }];
+const myLibrary = [];
 const bookList = document.querySelector('.list__container');
 
 const bookFrom = document.querySelector('.form__books');
