@@ -63,14 +63,24 @@ function populateBooks(library = [], bookList) {
 }
 
 function showForm() {
-    popup.style.visibility = 'visible';
-    popup.querySelector('.form__wrapper').classList.add('form--active');
+    popup.classList.add('form--active');
+    overlay.classList.add('overlay--active');
 }
 
-function removeForm(e) {
+function removeForm() {
+    popup.classList.remove('form--active');
+    overlay.classList.remove('overlay--active');
+}
+
+function removeFormKey(e) {
+    if(e.key === "Escape") {
+        removeForm();
+    }
+}
+
+function removeFormClick(e) {
     if (!e.target.matches('section')) return;
-    popup.querySelector('.form__wrapper').classList.remove('form--active');
-    popup.style.visibility = 'hidden';
+    removeForm();
 }
 
 function handleBtns(e) {
