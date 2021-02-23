@@ -88,14 +88,17 @@ function handleBtns(e) {
 const myLibrary = [{ title: "Andrzje", author: "Doda", pagesNum: "256", isRead: false }, { title: "Andrzje", author: "Doda", pagesNum: "256", isRead: true }, { title: "Andrzje", author: "Doda", pagesNum: "256", isRead: false }];
 const bookList = document.querySelector('.list__container');
 
-const bookFrom = document.querySelector('.books');
+const bookFrom = document.querySelector('.form__books');
 bookFrom.addEventListener('submit', addBookToLibrary);
 
 const btnAddBook = document.querySelector('.addBook');
 btnAddBook.addEventListener('click', showForm);
 
 const popup = document.querySelector('.form');
-popup.addEventListener('click', removeForm);
+const overlay = document.querySelector('.overlay');
+popup.addEventListener('click', removeFormClick);
 populateBooks(myLibrary, bookList);
 
 bookList.addEventListener('click', handleBtns);
+
+document.addEventListener('keydown', removeFormKey);
