@@ -34,26 +34,27 @@ function populateBooks(library = [], bookList) {
         return (
             `
     <div class="list__item--${index} item" data-index="${index}">
-        <div class="list__item--title">
-        <span class="item__title">Title</span>
-        <p>${book.title}</p>
+        <div class="list__item--title list__item">
+            <span class="item__title">Title</span>
+            <p>${book.title}</p>
         </div>
 
-        <div class="list__item--author">
-        <span class="item__author">Author</span>
-        <p>${book.author}</p>
+        <div class="list__item--author list__item">
+            <span class="item__author">Author</span>
+            <p>${book.author}</p>
         </div>
 
-        <div class="list__item--pages">
-        <span class="item__pages">Pages Number</span>
-        <p>${book.pagesNum}</p>
+        <div class="list__item--pages list__item">
+            <span class="item__pages">Pages Number</span>
+            <p>${book.pagesNum}</p>
         </div>
 
-        <div class="list__item--oper">
-        <span class="item__oper">Operations</span>
-        <label for="item--${index}">Readed?</label>
-        <input type="checkbox" id="item--${index}" ${book.isRead ? "checked" : ''}>
-        <button class="item__btn--remove">Remove</button>
+        <div class="list__item--oper list__item">
+            <span class="item__oper">Operations</span>
+            <div class="list__item__oper__wrapper">
+                <button class="btn btn--${book.isRead ? "checked" : 'unchecked'}">Read</button>
+                <button class="item__btn--remove btn">Remove</button>
+            </div>
         </div>
 
     </div>
