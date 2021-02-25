@@ -55,7 +55,7 @@ function populateBooks(library = [], bookList) {
         
         <div class="c-list__item">
             <span class="c-list__title">Description</span>
-            <p class="c-list__result c-list__desc">${book.description}</p>
+            <p class="c-list__result c-list__desc">${book.description.split('').length <= 1 ? "No description" : book.description}</p>
         </div>
 
         <div class="c-list__item">
