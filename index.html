@@ -12,45 +12,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    <header class="header">
+    <header class="c-header l-flex-align">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="header__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="c-header__icon">
         <path fill-rule="evenodd" d="M10.496 2.132a1 1 0 00-.992 0l-7 4A1 1 0 003 8v7a1 1 0 100 2h14a1 1 0 100-2V8a1 1 0 00.496-1.868l-7-4zM6 9a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1zm3 1a1 1 0 012 0v3a1 1 0 11-2 0v-3zm5-1a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1z" clip-rule="evenodd" />
         </svg>
         <a href="#">
-        <h1 class="header__title">Lib for books</h1>
+        <h1 class="c-header__title">Lib for books</h1>
         </a>
     </header>
-    <main class="main">
-        <section class="list">
-            <h2 class="list__title">My Books</h2>
-            <div class="list__container">
-                
-            </div>
+    <main class="c-main">
+        <section class="c-list">
+            <h2 class="c-list__heading">My Books</h2>
+            <div class="c-list__container"></div>
         </section>
     </main>
-    <section class="form">
-        <div class="form__wrapper">
-        <h2 class="form__title">Add new Book!</h2>
-        <form action="#" class="form__books">
+    <section class="c-form">
+        <div class="c-form__wrapper l-flexCenterCol">
+        <h2 class="c-form__heading">Add a new Book!</h2>
+        <form action="#" class="c-form__books">
             <label for="title">Title:</label>
-            <input type="text" class="books__title" id="title" required>
+            <input type="text" class="c-form__title" id="title" required>
             <label for="author">Author:</label>
-            <input type="text" class="books__author" id="author" required>
+            <input type="text" class="c-form__author" id="author" required>
             <label for="pages">Pages Number:</label>
-            <input type="number" class="books__pages" id="pages" required>
-            <div class="form__books__wrapper-readed">
+            <input type="number" class="c-form__pages" id="pages" required>
+            <div class="l-flex l-gap">
                 <label for="readed">Have you read it?</label>
-                <input type="checkbox" class="books__readed" name="isRead" id="readed">
+                <input type="checkbox" class="c-form__readed" name="isRead" id="readed">
             </div>
-            <input class="btn" type="submit" value="Add">
+            <input class="c-form__btn btn" type="submit" value="Add">
         </form>
         </div>
     </section>
-    <button class="addBook">+</button>
-    <div class="overlay"></div>
-    <footer class="footer">
-            <p class="footer__person">Made with ❤️ by <a href="https://github.com/DawidBal" target="_blank" class="footer__link">Dave</a> </p>
+    <button class="c-addBook">+</button>
+    <div class="l-overlay"></div>
+    <footer class="c-footer">
+            <p class="c-footer__person">Made with ❤️ by <a href="https://github.com/DawidBal" target="_blank" class="c-footer__link">Dave</a> </p>
     </footer>
 </body>
 </html>

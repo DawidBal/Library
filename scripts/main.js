@@ -34,27 +34,27 @@ function populateBooks(library = [], bookList) {
     bookList.innerHTML = library.map((book, index) => {
         return (
             `
-    <div class="list__item--${index} item" data-index="${index}">
-        <div class="list__item--title list__item">
-            <span class="item__title">Title</span>
-            <p>${book.title}</p>
+    <div class="c-list-${index} c-item" data-index="${index}">
+        <div class="c-list__item">
+            <span class="c-list__title">Title</span>
+            <p class="c-list__result">${book.title}</p>
         </div>
 
-        <div class="list__item--author list__item">
-            <span class="item__author">Author</span>
-            <p>${book.author}</p>
+        <div class="c-list__item">
+            <span class="c-list__title">Author</span>
+            <p class="c-list__result">${book.author}</p>
         </div>
 
-        <div class="list__item--pages list__item">
-            <span class="item__pages">Pages Number</span>
-            <p>${book.pagesNum}</p>
+        <div class="c-list__item">
+            <span class="c-list__title">Pages Number</span>
+            <p class="c-list__result">${book.pagesNum}</p>
         </div>
 
-        <div class="list__item--oper list__item">
-            <span class="item__oper">Operations</span>
-            <div class="list__item__oper__wrapper">
-                <button class="btn btn--${book.isRead ? "checked" : 'unchecked'}">Read</button>
-                <button class="item__btn--remove btn">Remove</button>
+        <div class="c-list__item">
+            <span class="c-list__oper">Operations</span>
+            <div class="c-list__wrapper">
+                <button class="c-list__btn btn c-list__btn--${book.isRead ? "checked" : 'unchecked'} js-btn--check">Read</button>
+                <button class="c-list__btn btn js-btn--remove">Remove</button>
             </div>
         </div>
 
@@ -64,13 +64,13 @@ function populateBooks(library = [], bookList) {
 }
 
 function showForm() {
-    popup.classList.add('form--active');
-    overlay.classList.add('overlay--active');
+    popup.classList.add('c-form--active');
+    overlay.classList.add('l-overlay--active');
 }
 
 function removeForm() {
-    popup.classList.remove('form--active');
-    overlay.classList.remove('overlay--active');
+    popup.classList.remove('c-form--active');
+    overlay.classList.remove('l-overlay--active');
 }
 
 function removeFormKey(e) {
@@ -85,30 +85,33 @@ function removeFormClick(e) {
 }
 
 function handleBtns(e) {
+    console.log(e.target);
     const grandParent = e.target.offsetParent;
     const index = grandParent.dataset.index;
-    if (e.target.matches('.item__btn--remove')) {
+    if (e.target.matches('.js-btn--remove')) {
+        console.log(index);
         myLibrary.splice(index, 1);
         populateBooks(myLibrary, bookList);
     }
-    if (e.target.matches(`.btn--checked`) || e.target.matches(`.btn--unchecked`)) {
+    if (e.target.matches(`.js-btn--check`)) {
+        console.log(index);
         myLibrary[index].isRead = !myLibrary[index].isRead;
-        e.target.classList.toggle('btn--checked');
-        e.target.classList.toggle('btn--unchecked');
+        e.target.classList.toggle('c-list__btn--checked');
+        e.target.classList.toggle('c-list__btn--unchecked');
     }
 }
 
-const myLibrary = [];
-const bookList = document.querySelector('.list__container');
+const myLibrary = [{ title: "An", author: "dud", pagesNum: "23", isRead: false }, { title: "Annn", author: "daaud", pagesNum: "232", isRead: true }];
+const bookList = document.querySelector('.c-list__container');
 
-const bookFrom = document.querySelector('.form__books');
+const bookFrom = document.querySelector('.c-form__books');
 bookFrom.addEventListener('submit', addBookToLibrary);
 
-const btnAddBook = document.querySelector('.addBook');
+const btnAddBook = document.querySelector('.c-addBook');
 btnAddBook.addEventListener('click', showForm);
 
-const popup = document.querySelector('.form');
-const overlay = document.querySelector('.overlay');
+const popup = document.querySelector('.c-form');
+const overlay = document.querySelector('.l-overlay');
 popup.addEventListener('click', removeFormClick);
 populateBooks(myLibrary, bookList);
 
