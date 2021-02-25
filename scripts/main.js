@@ -6,9 +6,9 @@
  */
 function Book(title, author, pagesNum, isRead = false) {
     this.title = title,
-        this.author = author,
-        this.pagesNum = pagesNum,
-        this.isRead = isRead;
+    this.author = author,
+    this.pagesNum = pagesNum,
+    this.isRead = isRead;
 }
 
 Book.prototype.info = function () {
@@ -27,6 +27,7 @@ function addBookToLibrary(e) {
     myLibrary.push(newBook);
     populateBooks(myLibrary, bookList);
     removeForm();
+    localStorage.setItem('Books', JSON.stringify(myLibrary));
     this.reset();
 }
 
@@ -34,7 +35,7 @@ function populateBooks(library = [], bookList) {
     bookList.innerHTML = library.map((book, index) => {
         return (
             `
-    <div class="c-list-${index} c-item" data-index="${index}">
+    <div class="c-list-${index} c-item l-flexCenterCol l-gap" data-index="${index}">
         <div class="c-list__item">
             <span class="c-list__title">Title</span>
             <p class="c-list__result">${book.title}</p>
@@ -85,23 +86,22 @@ function removeFormClick(e) {
 }
 
 function handleBtns(e) {
-    console.log(e.target);
     const grandParent = e.target.offsetParent;
     const index = grandParent.dataset.index;
     if (e.target.matches('.js-btn--remove')) {
-        console.log(index);
         myLibrary.splice(index, 1);
         populateBooks(myLibrary, bookList);
+        localStorage.setItem('Books', JSON.stringify(myLibrary));
     }
     if (e.target.matches(`.js-btn--check`)) {
-        console.log(index);
         myLibrary[index].isRead = !myLibrary[index].isRead;
         e.target.classList.toggle('c-list__btn--checked');
         e.target.classList.toggle('c-list__btn--unchecked');
+        localStorage.setItem('Books', JSON.stringify(myLibrary));
     }
 }
 
-const myLibrary = [{ title: "An", author: "dud", pagesNum: "23", isRead: false }, { title: "Annn", author: "daaud", pagesNum: "232", isRead: true }];
+const myLibrary = JSON.parse(localStorage.getItem('Books')) || [];
 const bookList = document.querySelector('.c-list__container');
 
 const bookFrom = document.querySelector('.c-form__books');
