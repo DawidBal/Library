@@ -42,7 +42,7 @@ a {
   width: 6.25rem;
   background: var(--primaryColor);
   color: var(--white);
-  border: 2px solid var(--white);
+  border: 0.125rem solid var(--white);
   padding: 0.5rem 1rem;
   border-radius: 5px;
   margin: 0.3125rem;
@@ -153,16 +153,13 @@ a {
 
 .c-item {
   transform: scale(1);
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   border: 1px solid var(--secondaryColor);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   background: var(--secondaryColor);
-  @include flexCenter(column);
-  gap: 0.5rem;
   box-shadow: 0 0.3rem var(--secondaryColorShadow);
 }
-
 .c-list {
   width: 100vw;
   flex: 1;
