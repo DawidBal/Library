@@ -235,7 +235,7 @@ a {
   border-radius: 50%;
   font-size: 2rem;
   padding: 0;
-  margin: 2rem;
+  margin: 4.5rem 1.5rem;
   -webkit-transition: -webkit-transform 0.2s ease-out;
   transition: -webkit-transform 0.2s ease-out;
   transition: transform 0.2s ease-out;
