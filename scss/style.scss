@@ -178,17 +178,23 @@ a {
   }
 
   &__title {
-    gap: 0.5rem;
     color: var(--black);
   }
   &__result {
     font-size: 1.75rem;
-    margin: 0;
+    margin: 0.125rem 0;
     padding: 0;
+  }
+  &__desc {
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem 1rem;
+    border-radius: 5px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
   }
   &__item {
     text-align: center;
-    margin: 0.2rem;
   }
   &__btn {
     &--checked {

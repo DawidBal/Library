@@ -4,11 +4,12 @@
  * @param {number} pagesNum 
  * @param {bool}(Optional) isRead 
  */
-function Book(title, author, pagesNum, isRead = false) {
+function Book(title, author, pagesNum, description, isRead = false) {
     this.title = title,
-    this.author = author,
-    this.pagesNum = pagesNum,
-    this.isRead = isRead;
+        this.author = author,
+        this.pagesNum = pagesNum,
+        this.isRead = isRead;
+        this.description = description;
 }
 
 Book.prototype.info = function () {
@@ -20,10 +21,11 @@ function addBookToLibrary(e) {
     const title = this.querySelector('#title').value;
     const author = this.querySelector('#author').value;
     const pagesNum = this.querySelector('#pages').value;
+    const description = this.querySelector('#description').value;
     const isRead = this.querySelector('#readed').checked;
+    
 
-
-    const newBook = new Book(title, author, pagesNum, isRead);
+    const newBook = new Book(title, author, pagesNum, description, isRead);
     myLibrary.push(newBook);
     populateBooks(myLibrary, bookList);
     removeForm();
@@ -50,6 +52,11 @@ function populateBooks(library = [], bookList) {
             <span class="c-list__title">Pages Number</span>
             <p class="c-list__result">${book.pagesNum}</p>
         </div>
+        
+        <div class="c-list__item">
+            <span class="c-list__title">Description</span>
+            <p class="c-list__result c-list__desc">${book.description}</p>
+        </div>
 
         <div class="c-list__item">
             <span class="c-list__oper">Operations</span>
@@ -75,7 +82,7 @@ function removeForm() {
 }
 
 function removeFormKey(e) {
-    if(e.key === "Escape") {
+    if (e.key === "Escape") {
         removeForm();
     }
 }
