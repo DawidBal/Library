@@ -2,19 +2,26 @@
  * @param {string} title 
  * @param {string} author 
  * @param {number} pagesNum 
+ * @param {string} description 
  * @param {bool}(Optional) isRead 
  */
-function Book(title, author, pagesNum, description, isRead = false) {
-    this.title = title,
+
+class Book {
+    
+    constructor(title, author, pagesNum, description, isRead = false) {
+
+        this.title = title,
         this.author = author,
         this.pagesNum = pagesNum,
         this.isRead = isRead;
         this.description = description;
+    };
+
+    info() {
+        return `${this.title} by ${this.author}, ${this.pagesNum} pages, ${this.isRead ? "readed" : "not read yet"}`;
+    };
 }
 
-Book.prototype.info = function () {
-    return `${this.title} by ${this.author}, ${this.pagesNum} pages, ${this.isRead ? "readed" : "not read yet"}`;
-}
 
 function addBookToLibrary(e) {
     e.preventDefault();
